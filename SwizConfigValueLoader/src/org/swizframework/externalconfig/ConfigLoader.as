@@ -10,7 +10,7 @@ package org.swizframework.externalconfig
 	import org.swizframework.externalconfig.event.ConfigLoaderEvent;
 
 	[Event( name = "configLoadComplete", type = "org.swizframework.externalconfig.event.ConfigLoaderEvent" )]
-	[Event( name = "configLoadComplete", type = "org.swizframework.externalconfig.event.ConfigLoaderEvent" )]
+	[Event( name = "configLoadError", type = "org.swizframework.externalconfig.event.ConfigLoaderEvent" )]
 	public class ConfigLoader extends EventDispatcher
 	{
 		
