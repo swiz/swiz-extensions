@@ -89,19 +89,15 @@ package org.swizframework.externalconfig
 
 		protected function handleLoadingError( event : IOErrorEvent ) : void
 		{
-			var errorEvent : ConfigLoaderEvent = new ConfigLoaderEvent( ConfigLoaderEvent.CONFIG_LOAD_ERROR );
-			errorEvent.error = IOErrorEvent( event ).toString();
+			var errorEvent : ConfigLoaderEvent = new ConfigLoaderEvent( ConfigLoaderEvent.CONFIG_LOAD_ERROR, null, event.toString() );
 			dispatchLoaderEvent( errorEvent );
 		}
 
 		protected function handleLoadingResult( event : Event ) : void
 		{
-			var result : XML = new XML( loader.data );
-			xml = result;
+			xml = new XML( loader.data );
 
-			var decoder : SimpleXMLDecoder = new SimpleXMLDecoder( true );
-			var data : Object = decoder.decodeXML( new XMLDocument( result.toXMLString() ) );
-			configData = data;
+			configData = new SimpleXMLDecoder( true ).decodeXML( new XMLDocument( xml.toXMLString() ) );
 			isConfigLoaded = true;
 
 			var loadCompleteEvent : ConfigLoaderEvent = new ConfigLoaderEvent( ConfigLoaderEvent.CONFIG_LOAD_COMPLETE, configData );
